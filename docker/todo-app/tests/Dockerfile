@@ -2,12 +2,14 @@ FROM mjgargani/puppeteer:trybe1.0
 
 WORKDIR /app
 
-ADD ["node_modules.tar.gz", "./"]
+COPY package.json .
 
-COPY ./e2e ./e2e
+COPY package-lock.json .
 
-COPY ["package.json", "package-lock.json", "./"]
+RUN npm install
 
-COPY jest.config.js .
+ADD ./node_modules.tar.gz .
+
+COPY . .
 
 CMD ["npm", "test"]

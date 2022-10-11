@@ -4,10 +4,14 @@ WORKDIR /app
 
 EXPOSE 3001
 
-ADD ["node_modules.tar.gz", "./"]
+COPY package.json .
 
-COPY ["src", "./src"] 
+COPY package-lock.json .
 
-COPY ["package.json", "package-lock.json", "./"]
+RUN npm install
 
-CMD [ "npm", "start" ]
+COPY . .
+
+ADD ./node_modules.tar.gz .
+
+CMD ["npm", "start"]
