@@ -4,9 +4,10 @@ WORKDIR /app
 
 ADD ["node_modules.tar.gz", "./"]
 
-COPY . .
+COPY ./e2e ./e2e
 
-RUN npm install
+COPY ["package.json", "package-lock.json", "./"]
 
+COPY jest.config.js .
 
 CMD ["npm", "test"]

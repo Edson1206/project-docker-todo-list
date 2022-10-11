@@ -4,10 +4,10 @@ WORKDIR /app
 
 EXPOSE 3000
 
-COPY ["package.json", "package-lock.json", "./"]
-RUN npm install
+ADD ["node_modules.tar.gz", "./"]
 
 COPY ["src", "./src"] 
-ADD ["node_modules.tar.gz", "./"]
+
+COPY ["package.json", "package-lock.json", "./"]
 
 CMD [ "npm", "start" ]
